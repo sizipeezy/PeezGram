@@ -3,9 +3,7 @@
     using Microsoft.AspNetCore.Mvc;
     using System.Diagnostics;
 
-    [ApiController]
-    [Route("{controller}")]
-    public class HomeController : ControllerBase
+    public class HomeController : ApiController
     {
         public IActionResult Get()
         {
