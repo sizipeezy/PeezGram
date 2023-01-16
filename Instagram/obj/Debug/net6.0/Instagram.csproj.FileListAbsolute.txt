@@ -65,3 +65,4 @@ E:\C# Asp.Net Books\Code\Instagram\Instagram\obj\Debug\net6.0\refint\Instagram.d
 E:\C# Asp.Net Books\Code\Instagram\Instagram\obj\Debug\net6.0\Instagram.pdb
 E:\C# Asp.Net Books\Code\Instagram\Instagram\obj\Debug\net6.0\Instagram.genruntimeconfig.cache
 E:\C# Asp.Net Books\Code\Instagram\Instagram\obj\Debug\net6.0\ref\Instagram.dll
+E:\C# Asp.Net Books\Code\Instagram\Instagram\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
