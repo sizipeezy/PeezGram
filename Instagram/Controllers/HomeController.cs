@@ -5,7 +5,7 @@
 
     public class HomeController : ApiController
     {
-        public IActionResult Get()
+        public ActionResult Get()
         {
             return this.Ok("it works");
         }

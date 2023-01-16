@@ -21,6 +21,7 @@
             this.appSettings = appSettings.Value;
         }
 
+        [Route(nameof(Register))]
         public async Task<IActionResult> Register(RegisterInputModel model)
         {
             var user = new User()
@@ -39,6 +40,8 @@
             return BadRequest(result.Errors);
         }
 
+
+        [Route(nameof(Login))]
         public async Task<ActionResult<string>> Login(LoginInputModel model)
         {
             var user = await this.userManager.FindByNameAsync(model.UserName);

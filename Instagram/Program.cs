@@ -1,6 +1,7 @@
 using Instagram;
 using Instagram.Data;
 using Instagram.Data.Models;
+using Instagram.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +21,20 @@ builder
     .AddIdentity<User, IdentityRole>(options =>
   {
       options.Password.RequireDigit = false;
+      options.Password.RequiredLength = 3;
+      options.Password.RequireLowercase = false;
+      options.Password.RequireNonAlphanumeric = false;
+      options.Password.RequireUppercase = false;
+      
   })
     .AddEntityFrameworkStores<InstagramDbContext>();
 
 builder.Services.Configure<Settings>(builder.Configuration.GetSection("Settings"));
 builder.Services.AddControllers();
 
-var appSettings = builder.Configuration.Get<Settings>();
-var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+var appSettings = builder.Configuration.GetSection("Settings");
+//Configuration.GetSection("SqliteSettings").GetChildren()
+var key = Encoding.ASCII.GetBytes(appSettings.Key);
 
 builder.Services.AddAuthentication(x =>
 {
@@ -57,9 +64,9 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 
 app.UseCors(x => x
-   .AllowAnyOrigin()
-   .AllowAnyMethod()
-   .AllowAnyHeader());
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -68,5 +75,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
+
+app.ApplyMigration();
 
 app.Run();
