@@ -1,4 +1,5 @@
 using Instagram.Data;
+using Instagram.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,17 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<InstagramDbContext>(options =>
          options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder
     .Services
-    .AddIdentity<IdentityUser, IdentityRole>(options =>
+    .AddIdentity<User, IdentityRole>(options =>
   {
       options.Password.RequireDigit = false;
   })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<InstagramDbContext>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
